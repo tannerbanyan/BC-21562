@@ -124,7 +124,7 @@ function start_app() {
       systemd-run --machine="${logged_on_user}@.host" --user --collect \
           "/opt/SonicWall Cloud Secure Edge/SonicWallCSE"
       sleep 5
-  }
+}
 
 function stop_app() {
     echo "Stopping SonicWall Cloud Secure Edge app"
