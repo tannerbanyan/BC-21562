@@ -119,11 +119,12 @@ function download_install() {
 }
 
 function start_app() {
-    echo "Starting the SonicWall Cloud Secure Edge app as: $logged_on_user"
-    #start app and disown from shell
-    sudo sudo -u "$logged_on_user" nohup /opt/SonicWall\ Cloud\ Secure\ Edge/SonicWallCSE &>/dev/null & disown
-    sleep 5
-}
+      echo "Starting the SonicWall Cloud Secure Edge app as: $logged_on_user"
+      #launch inside the user's desktop session, same as clicking the app shortcut
+      systemd-run --machine="${logged_on_user}@.host" --user --collect \
+          "/opt/SonicWall Cloud Secure Edge/SonicWallCSE"
+      sleep 5
+  }
 
 function stop_app() {
     echo "Stopping SonicWall Cloud Secure Edge app"
